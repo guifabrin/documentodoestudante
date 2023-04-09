@@ -1,10 +1,10 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import App from './App';
+import Content from './Content';
 
-describe('App', () => {
-  it('should render App', () => {
-    render(<App />);
+describe('<Content />', () => {
+  it('should render LoginPage', () => {
+    render(<Content />);
     expect(screen.getByText('Entrar')).toBeDefined();
   });
 });

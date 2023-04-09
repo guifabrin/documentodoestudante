@@ -1,17 +1,18 @@
-import * as FileSystem from 'expo-file-system';
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
+import {Storage} from 'expo-storage';
 
-export function useStorage(storeKey = '@storage_Key') {
-    const [data, _setData] = useState(null)
-    const key = `${FileSystem.documentDirectory}_${storeKey}`
+export function useStorage(key) {
+  const [data, _setData] = useState(null);
+  const setData = value => {
+    _setData(value);
+    return Storage.setItem({
+      key: key,
+      value: JSON.stringify(value),
+    });
+  };
 
-    const setData = (value) => {
-        FileSystem.writeAsStringAsync(key, value)
-        _setData(value)
-    }
-
-    useEffect(() => {
-        FileSystem.readAsStringAsync(key).then(_setData)
-    }, [])
-    return [data, setData]
+  useEffect(() => {
+    Storage.getItem({key}).then(_data => _setData(_data));
+  }, []);
+  return [data, setData];
 }
