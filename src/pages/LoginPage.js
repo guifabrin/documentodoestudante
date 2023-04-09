@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import {CARD_TYPES, COLORS} from '../config/variables';
 
-async function estudantecc(email, password, callback, errorCallback) {
+async function scrapEstudanteCC(email, password, callback, errorCallback) {
   try {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -60,7 +60,7 @@ async function estudantecc(email, password, callback, errorCallback) {
   }
 }
 
-async function documentodoestudante(
+async function scrapDocumentoDoEstudante(
   email,
   password,
   callback,
@@ -89,7 +89,7 @@ async function documentodoestudante(
       );
     } catch (error) {
       if (!error.response) errorCallback();
-      return documentodoestudante(
+      return scrapDocumentoDoEstudante(
         email,
         password,
         callback,
@@ -136,45 +136,67 @@ export default function LoginPage({setData}) {
   const [password, setPassword] = useState('');
   const [started, setStarted] = useState(0);
   const [errorDocumentoEstudante, setErrorDocumentoEstudante] = useState(false);
-  const [errorDocumentoCC, setErrorDocumentoCC] = useState(false);
+  const [errorEstudanteCC, setErrorEstudanteCC] = useState(false);
+
+  const reset = () => {
+    setErrorDocumentoEstudante(false);
+    setErrorEstudanteCC(false);
+    setStarted(false);
+  };
   const onLoginPress = () => {
     setErrorDocumentoEstudante(false);
-    setErrorDocumentoCC(false);
+    setErrorEstudanteCC(false);
     setStarted(true);
-    documentodoestudante(
+    scrapDocumentoDoEstudante(
       email,
       password,
-      ({card, qrCode, ...data}) => {
-        setData(
-          JSON.stringify({
-            card,
-            qrCode,
-            profile: data,
-            photo: data.url,
-            cardType: CARD_TYPES.DOCUMENTO_DO_ESTUDANTE,
-          }),
-        );
+      ({card, qrCode, url, ...profile}) => {
+        reset();
+        setData({
+          card,
+          qrCode,
+          profile: {
+            name: profile.name,
+            birthDate: profile.birthDate,
+            cpf: profile.cpf,
+            documentNumber: profile.documentNumber,
+            course: profile.course,
+            institution: profile.institution,
+            scholarity: profile.scholarity,
+            code: profile.useCode,
+          },
+          photo: url,
+          cardType: CARD_TYPES.DOCUMENTO_DO_ESTUDANTE,
+        });
       },
       () => {
         setErrorDocumentoEstudante(true);
       },
     );
-    estudantecc(
+    scrapEstudanteCC(
       email,
       password,
       ({card, qrCode, photo, ...data}) => {
-        setData(
-          JSON.stringify({
-            card,
-            qrCode,
-            profile: data,
-            photo,
-            cardType: CARD_TYPES.ESTUDANTE_CC,
-          }),
-        );
+        reset();
+        setData({
+          card,
+          qrCode,
+          profile: {
+            name: data.full_name,
+            birthDate: data.birth_date,
+            cpf: data.cpf,
+            documentNumber: data.document_number,
+            course: data.course_name,
+            institution: data.institution_name,
+            scholarity: data.course_type,
+            code: data.registration_number,
+          },
+          photo,
+          cardType: CARD_TYPES.ESTUDANTE_CC,
+        });
       },
       () => {
-        setErrorDocumentoCC(true);
+        setErrorEstudanteCC(true);
       },
     );
   };
@@ -195,20 +217,13 @@ export default function LoginPage({setData}) {
       backgroundColor: COLORS.PRIMARY,
     },
   });
-  if (errorDocumentoEstudante && errorDocumentoCC) {
+  if (errorDocumentoEstudante && errorEstudanteCC) {
     return (
       <View style={styles.loading}>
         <Text>Não foi possível encontrar suas informações</Text>
         <Text>* https://www.documentodoestudante.com.br/</Text>
         <Text style={{paddingBottom: 10}}>* https://estudante.cc/</Text>
-        <Button
-          onPress={() => {
-            setErrorDocumentoEstudante(false);
-            setErrorDocumentoCC(false);
-            setStarted(false);
-          }}
-          title={'Tentar novamente'}
-        ></Button>
+        <Button onPress={reset} title={'Tentar novamente'}></Button>
       </View>
     );
   }

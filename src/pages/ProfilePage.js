@@ -1,6 +1,6 @@
 import {Button, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import {COLORS, PROFILE_REF} from '../config/variables';
+import {COLORS} from '../config/variables';
 
 const styles = StyleSheet.create({
   card: {
@@ -34,13 +34,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ({handleLogout, cardType, photo, qrCode, ...data}) => {
-  const ref = PROFILE_REF[cardType];
+export default ({handleLogout, photo, qrCode, profile}) => {
   return (
     <ScrollView>
       <View style={styles.card}>
         <View style={styles.row}>
-          <Text style={styles.name}>{data.profile[ref.name]}</Text>
+          <Text style={styles.name}>{profile.name}</Text>
           <Image
             source={{uri: photo}}
             resizeMethod={'resize'}
@@ -49,31 +48,31 @@ export default ({handleLogout, cardType, photo, qrCode, ...data}) => {
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>Data de Nascimento: </Text>
-          <Text style={styles.text}>{data.profile[ref.birthDate]}</Text>
+          <Text style={styles.text}>{profile.birthDate}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>CPF: </Text>
-          <Text style={styles.text}>{data.profile[ref.cpf]}</Text>
+          <Text style={styles.text}>{profile.cpf}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>Documento: </Text>
-          <Text style={styles.text}>{data.profile[ref.documentNumber]}</Text>
+          <Text style={styles.text}>{profile.documentNumber}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>Curso: </Text>
-          <Text style={styles.text}>{data.profile[ref.course]}</Text>
+          <Text style={styles.text}>{profile.course}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>Instituição: </Text>
-          <Text style={styles.text}>{data.profile[ref.institution]}</Text>
+          <Text style={styles.text}>{profile.institution}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>Escolaridade: </Text>
-          <Text style={styles.text}>{data.profile[ref.scholarity]}</Text>
+          <Text style={styles.text}>{profile.scholarity}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>Código: </Text>
-          <Text style={styles.text}>{data.profile[ref.code]}</Text>
+          <Text style={styles.text}>{profile.code}</Text>
         </View>
         <View style={styles.rowQrCode}>
           <QRCode value={qrCode} size={200} />

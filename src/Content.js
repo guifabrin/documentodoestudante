@@ -12,31 +12,23 @@ LogBox.ignoreAllLogs();
 const Tab = createMaterialTopTabNavigator();
 
 export default function Content() {
-  const [data, setData] = useStorage('@data');
+  const [data, setData, deleteData] = useStorage('data');
   if (!data) return <LoginPage setData={setData} />;
-  const {card, cardType, photo, profile, qrCode} = data;
-  const CardTab = props => (
-    <CardPage {...props} card={card} cardType={cardType} photo={photo} />
-  );
+  const CardTab = props => <CardPage {...props} {...data} />;
   const ProfileTab = props => (
-    <ProfilePage
-      {...props}
-      photo={photo}
-      qrCode={qrCode}
-      cardType={cardType}
-      handleLogout={() => setData('')}
-      profile={JSON.parse(profile)}
-    />
+    <ProfilePage {...props} {...data} handleLogout={deleteData} />
   );
 
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
         tabBarPosition="bottom"
-        tabBarOptions={{
-          inactiveTintColor: 'black',
-          activeTintColor: COLORS.PRIMARY,
-          indicatorStyle: {backgroundColor: COLORS.PRIMARY},
+        screenOptions={{
+          tabBarActiveTintColor: COLORS.PRIMARY,
+          tabBarInactiveTintColor: 'black',
+          tabBarIndicatorStyle: {
+            backgroundColor: COLORS.PRIMARY,
+          },
         }}
       >
         <Tab.Screen
