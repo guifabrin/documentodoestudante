@@ -72,7 +72,7 @@ export default ({handleLogout, photo, qrCode, profile}) => {
         </View>
         <View style={styles.row}>
           <Text style={styles.title}>Código: </Text>
-          <Text style={styles.text}>{profile.code}</Text>
+          <Text style={styles.text}>{profile.useCode}</Text>
         </View>
         <View style={styles.rowQrCode}>
           <QRCode value={qrCode} size={200} />

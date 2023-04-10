@@ -11,7 +11,7 @@ const fields = [
   'course',
   'institution',
   'scholarity',
-  'code',
+  'useCode',
 ];
 
 describe('<ProfilePage />', () => {
@@ -19,7 +19,7 @@ describe('<ProfilePage />', () => {
     it(`should render ProfilePage for ${cardType}`, () => {
       const profile = {};
       for (const field of fields) {
-        profile[field] = `${cardType}_${field}}`;
+        profile[field] = `${cardType}_${field}`;
       }
       const tree = render(
         <ProfilePage
@@ -32,7 +32,7 @@ describe('<ProfilePage />', () => {
       ).toJSON();
       const json = JSON.stringify(tree);
       for (const field of fields)
-        expect(json).toContain(`${cardType}_${field}}`);
+        expect(json).toContain(`${cardType}_${field}`);
     });
   }
 });

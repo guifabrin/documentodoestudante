@@ -3,6 +3,8 @@ import {render} from '@testing-library/react-native';
 import CardPage from './CardPage';
 
 jest.mock('react-native-remote-svg', () => () => 'SVGImage');
+jest.mock('react-native-vector-icons/Ionicons', () => () => 'Ionicons');
+
 describe('<CardPage />', () => {
   it("shouldn't render CardPage", () => {
     const tree = render(
