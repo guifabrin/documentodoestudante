@@ -60,10 +60,5 @@
       "!**/jest.setup.js"
     ]
   },
-  "private": true,
-  "expo": {
-    "android": {
-      "versionCode": 3
-    }
-  }
+  "private": true
 }
