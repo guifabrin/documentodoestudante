@@ -8,14 +8,35 @@ describe('DocumentoDoEstudante', () => {
   describe('get', () => {
     it('should call the callback function with the correct data', async () => {
       const textData =
-        'var data = { "name": "John Doe", "birthDate": "01/01/2000", "url": "http://example.com", "useCode": "123456" }';
+        'var data = {\n' +
+        "                name: 'John Doe',\n" +
+        "                socialName: '',\n" +
+        "                institution: 'Some instituition',\n" +
+        "                scholarity: 'Scholarity',\n" +
+        "                course: 'Course',\n" +
+        "                birthDate: '01/01/2000',\n" +
+        "                documentNumber: '00000000000',\n" +
+        "                cpf: '000.000.000-00',\n" +
+        "                useCode: '123456',\n" +
+        "                enrollment: '01234567',\n" +
+        '                template: "dne-2023",\n' +
+        "                url: 'http://example.com'\n" +
+        '              }\n';
       const responseGeneration = {data: {image: 'fakeImage'}};
       const cookie = ['cookie1=value1', 'cookie2=value2'];
 
       const expectedOutput = {
         profile: {
-          name: 'John Doe',
           birthDate: '01/01/2000',
+          course: 'Course',
+          cpf: '000.000.000-00',
+          documentNumber: '00000000000',
+          enrollment: '01234567',
+          institution: 'Some instituition',
+          name: 'John Doe',
+          scholarity: 'Scholarity',
+          socialName: '',
+          template: 'dne-2023',
           url: 'http://example.com',
           useCode: '123456',
         },

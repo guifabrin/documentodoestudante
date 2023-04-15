@@ -1,5 +1,9 @@
 export const COLORS = {
-  PRIMARY: '#f09e26',
+  PRIMARY: '#2874AB',
+  SECONDARY: '#32a5f9',
+  ACTIVE: '#0A3A5C',
+  WHITE: '#ebebeb',
+  BLACK: '#000',
 };
 
 export const CARD_TYPES = {

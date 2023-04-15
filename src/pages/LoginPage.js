@@ -1,33 +1,29 @@
-import LoginScreen from 'react-native-login-screen';
 import {useState} from 'react';
-import LogoImg from '../../assets/logo.png';
-import {
-  ActivityIndicator,
-  Button,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {COLORS} from '../config/variables';
+import LoginScreen from 'react-native-login-screen';
 import DocumentoDoEstudante from '../clients/DocumentoDoEstudante';
 import EstudanteCC from '../clients/EstudanteCC';
+import LogoImg from '../../assets/logo.png';
+import PartialLoading from './LoginPage/PartialLoading';
+import PartialError from './LoginPage/PartialError';
+import styles from './LoginPage.styles';
 
 export default function LoginPage({setData}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [started, setStarted] = useState(0);
-  const [errorDocumentoEstudante, setErrorDocumentoEstudante] = useState(false);
-  const [errorEstudanteCC, setErrorEstudanteCC] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({
+    documentoEstudante: false,
+    estudanteCC: false,
+  });
+
   const reset = () => {
-    setErrorDocumentoEstudante(false);
-    setErrorEstudanteCC(false);
-    setStarted(false);
+    setErrors({documentoEstudante: false, estudanteCC: false});
+    setLoading(false);
   };
-  const onLoginPress = () => {
-    setErrorDocumentoEstudante(false);
-    setErrorEstudanteCC(false);
-    setStarted(true);
+
+  const handleLoginPress = () => {
+    setErrors({documentoEstudante: false, estudanteCC: false});
+    setLoading(true);
 
     EstudanteCC.get(
       email,
@@ -36,7 +32,7 @@ export default function LoginPage({setData}) {
         reset();
         setData(data);
       },
-      () => setErrorEstudanteCC(true),
+      () => setErrors(prevState => ({...prevState, estudanteCC: true})),
     );
 
     DocumentoDoEstudante.get(
@@ -46,55 +42,19 @@ export default function LoginPage({setData}) {
         reset();
         setData(data);
       },
-      () => setErrorDocumentoEstudante(true),
+      () => setErrors(prevState => ({...prevState, documentoEstudante: true})),
     );
   };
-  const window = Dimensions.get('window');
-  const styles = StyleSheet.create({
-    container: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: COLORS.PRIMARY,
-    },
-    loading: {
-      width: window.width,
-      height: window.height,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: COLORS.PRIMARY,
-    },
-  });
-  if (errorDocumentoEstudante && errorEstudanteCC) {
-    return (
-      <View style={styles.loading}>
-        <Text>Não foi possível encontrar suas informações</Text>
-        <Text>* https://www.documentodoestudante.com.br/</Text>
-        <Text style={{paddingBottom: 10}}>* https://estudante.cc/</Text>
-        <Button onPress={reset} title={'Tentar novamente'}></Button>
-      </View>
-    );
-  }
-  if (started) {
-    return (
-      <View style={styles.loading}>
-        <ActivityIndicator
-          size={100}
-          color="#000"
-          style={{paddingBottom: 10}}
-        />
-        <Text>Procurando suas informações em:</Text>
-        <Text>* https://www.documentodoestudante.com.br/</Text>
-        <Text>* https://estudante.cc/</Text>
-      </View>
-    );
-  }
+
+  const {documentoEstudante, estudanteCC} = errors;
+  if (documentoEstudante && estudanteCC) return <PartialError reset={reset} />;
+  if (loading) return <PartialLoading />;
+
   return (
     <LoginScreen
       style={styles.container}
       logoImageSource={LogoImg}
-      onLoginPress={onLoginPress}
+      onLoginPress={handleLoginPress}
       onEmailChange={setEmail}
       onPasswordChange={setPassword}
       disableSignup

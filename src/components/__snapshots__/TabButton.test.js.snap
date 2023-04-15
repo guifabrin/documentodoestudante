@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabButton renders correctly 1`] = `
+<View
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        [
+          {
+            "height": 5,
+          },
+          {
+            "backgroundColor": "transparent",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 45,
+            "justifyContent": "space-around",
+            "padding": 5,
+          },
+          {
+            "backgroundColor": "transparent",
+          },
+        ]
+      }
+    >
+      <Text />
+      <Text
+        style={
+          {
+            "color": "#ebebeb",
+            "textAlign": "center",
+          }
+        }
+      >
+        Test Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`TabButton renders with active color when active is true 1`] = `
+<View
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        [
+          {
+            "height": 5,
+          },
+          {
+            "backgroundColor": "#0A3A5C",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 45,
+            "justifyContent": "space-around",
+            "padding": 5,
+          },
+          {
+            "backgroundColor": "#32a5f9",
+          },
+        ]
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          [
+            {
+              "color": undefined,
+              "fontSize": 12,
+            },
+            {
+              "color": "#ebebeb",
+            },
+            {
+              "fontFamily": "ionicons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            {},
+          ]
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#ebebeb",
+            "textAlign": "center",
+          }
+        }
+      >
+        Test Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;
