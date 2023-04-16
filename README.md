@@ -37,15 +37,11 @@ e https://estudante.cc/ desenvolvido com React Native e Expo que utiliza a técn
 
 ## Screenshots
 
-![Pagina de Login](https://github.com/guifabrin/documentodoestudante/blob/main/docs/LoginPage.png?raw=true)
-
-![Pagina de Loading](https://github.com/guifabrin/documentodoestudante/blob/main/docs/LoadingPage.png?raw=true)
-
-![Pagina do Profile](https://github.com/guifabrin/documentodoestudante/blob/main/docs/ProfilePage.png?raw=true)
-
-![Pagina do Cartão](https://github.com/guifabrin/documentodoestudante/blob/main/docs/CardPage.png?raw=true)
-
-![Confirmação de Logout](https://github.com/guifabrin/documentodoestudante/blob/main/docs/LogoutConfirmation.png?raw=true)
+<img src="https://github.com/guifabrin/documentodoestudante/blob/main/docs/LoginPage.png?raw=true" width="45%"/>
+<img src="https://github.com/guifabrin/documentodoestudante/blob/main/docs/LoadingPage.png?raw=true" width="45%"/>
+<img src="https://github.com/guifabrin/documentodoestudante/blob/main/docs/ProfilePage.png?raw=true" width="45%"/>
+<img src="https://github.com/guifabrin/documentodoestudante/blob/main/docs/CardPage.png?raw=true" width="45%"/>
+<img src="https://github.com/guifabrin/documentodoestudante/blob/main/docs/LogoutConfirmation.png?raw=true" width="45%"/>
 
 ## Licença 📜
 
