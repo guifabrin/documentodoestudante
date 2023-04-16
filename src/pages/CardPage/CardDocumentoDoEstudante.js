@@ -1,28 +1,6 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
-
-const window = Dimensions.get('window');
-const {width, height} = window;
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: width,
-    height: height - 100,
-  },
-  rotatedContainer: {
-    transform: [{rotate: '90deg'}],
-    height: width,
-    width: height - 100,
-    justifyContent: 'center',
-  },
-  image: {
-    width: height - 100,
-    height: width,
-    resizeMode: 'contain',
-  },
-});
+import {Image, View} from 'react-native';
+import styles from './CardDocumentoDoEstudante.styles';
 
 export default ({card}) => {
   return (

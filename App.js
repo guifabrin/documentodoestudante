@@ -13,8 +13,8 @@ function App() {
   const [page, setPage] = useState(0);
   const [data, setData, deleteData] = useStorage('data');
   if (!data) return <LoginPage setData={setData} />;
-  const showConfirmDialog = () => {
-    return Alert.alert('Confirmação', 'Tem certeza que quer sair?', [
+  const showConfirmDialog = () =>
+    Alert.alert('Confirmação', 'Tem certeza que quer sair?', [
       {
         text: 'Sim',
         onPress: deleteData,
@@ -23,7 +23,7 @@ function App() {
         text: 'Não',
       },
     ]);
-  };
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>

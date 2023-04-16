@@ -50,7 +50,7 @@
       "!**/node_modules/**",
       "!**/babel.config.js",
       "!**/jest.setup.js",
-      "!src/**/*.styles.js",
+      "!**/*.styles.js",
       "!metro.config.js",
       "!index.js"
     ]

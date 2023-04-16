@@ -2,25 +2,22 @@ import {Dimensions, StyleSheet} from 'react-native';
 
 const window = Dimensions.get('window');
 const {width, height} = window;
-
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
     width: width,
     height: height - 100,
   },
-  svgContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  rotatedContainer: {
     transform: [{rotate: '90deg'}],
-    width: height - 100,
     height: width,
+    width: height - 100,
+    justifyContent: 'center',
   },
-  svgImage: {
-    width: height - 20,
+  image: {
+    width: height - 120,
     height: width - 20,
+    resizeMode: 'contain',
   },
 });
-
-export default styles;

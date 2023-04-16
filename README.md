@@ -45,6 +45,8 @@ e https://estudante.cc/ desenvolvido com React Native e Expo que utiliza a técn
 
 ![Pagina do Cartão](https://github.com/guifabrin/documentodoestudante/blob/main/docs/CardPage.png?raw=true)
 
+![Confirmação de Logout](https://github.com/guifabrin/documentodoestudante/blob/main/docs/LogoutConfirmation.png?raw=true)
+
 ## Licença 📜
 
 Este projeto é licenciado sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.

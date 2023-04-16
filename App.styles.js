@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   logo: {
     marginLeft: 10,
-    width: 25,
+    width: 35,
     height: 35,
   },
   title: {
