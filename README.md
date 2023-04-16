@@ -15,8 +15,8 @@ e https://estudante.cc/ desenvolvido com React Native e Expo que utiliza a técn
 
 ## Como executar o aplicativo ▶️
 
-1. Clone o repositório: `git clone https://github.com/seu-usuario/documento-do-estudante.git`
-2. Entre na pasta do projeto: `cd documento-do-estudante`
+1. Clone o repositório: `git clone https://github.com/guifabrin/documentodoestudante.git`
+2. Entre na pasta do projeto: `cd documentodoestudante`
 3. Instale as dependências: `npm install`
 4. Inicie o servidor de desenvolvimento: `expo start`
 
